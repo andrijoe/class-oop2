@@ -2,7 +2,7 @@ package com.pbo.bean;
 
 public class KtaCustomerr {
 
-	private Long Id;
+	private Long Id; 
 	private String Name;
 	private String Address;
 	private String Jobs;
