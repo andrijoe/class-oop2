@@ -1,6 +1,6 @@
 package com.pbo.bean;
 
-public class CustomerKta {
+public class KtaCustomer {
 
 	private Long Id;
 	private String Name;
