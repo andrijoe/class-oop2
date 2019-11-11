@@ -1,6 +1,6 @@
 package com.pbo.bean;
 
-public class KtaBank {
+public class KtaBankk {
 
 	private Long id;
 	private String bank_name;
