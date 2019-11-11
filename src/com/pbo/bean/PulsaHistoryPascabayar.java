@@ -2,8 +2,8 @@ package com.pbo.bean;
 
 public class PulsaHistoryPascabayar {
 	private Long id;
-	private String idtrxpascabayar;
-	private String tglpembayaran;
+	private String idtrxpostpaid;
+	private String paymentdate;
 	
 	public Long getId() {
 		return id;
@@ -11,19 +11,17 @@ public class PulsaHistoryPascabayar {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getIdtrxpascabayar() {
-		return idtrxpascabayar;
+	public String getIdtrxpostpaid() {
+		return idtrxpostpaid;
 	}
-	public void setIdtrxpascabayar(String idtrxpascabayar) {
-		this.idtrxpascabayar = idtrxpascabayar;
+	public void setIdtrxpostpaid(String idtrxpostpaid) {
+		this.idtrxpostpaid = idtrxpostpaid;
 	}
-	public String getTglpembayaran() {
-		return tglpembayaran;
+	public String getPaymentdate() {
+		return paymentdate;
 	}
-	public void setTglpembayaran(String tglpembayaran) {
-		this.tglpembayaran = tglpembayaran;
-	}
+	public void setPaymentdate(String paymentdate) {
+		this.paymentdate = paymentdate;
+	}	
 	
-	
-
 }
