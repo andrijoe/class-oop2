@@ -1,6 +1,6 @@
 package com.pbo.bean;
 
-public class Kpr {
+public class PerumahanKpr {
 	private Long id;
 	private String idhome;
 	private String harga;
