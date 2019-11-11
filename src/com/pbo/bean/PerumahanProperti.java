@@ -1,7 +1,7 @@
 package com.pbo.bean;
 
 public class PerumahanProperti {
-	private Long id; 
+	private Long id;
 	private String type;
 	private String address;
 	private String vendor;
