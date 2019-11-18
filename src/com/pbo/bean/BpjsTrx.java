@@ -2,7 +2,7 @@ package com.pbo.bean;
 
 public class BpjsTrx {
 public long id_trx;
-public String tgl_trx;
+public String tgl_trx; 
 public boolean isvalid;
 public long getId_trx() {
 	return id_trx;
