@@ -18,37 +18,38 @@ public class LeasingCostumer {
 	public String getNo_KTP() {
 		return No_KTP;
 	}
-	public void setNo_KTP(String No_KTP) {
-		this.No_KTP = No_KTP;
+	public void setNo_KTP(String no_KTP) {
+		No_KTP = no_KTP;
 	}
 	public String getNama() {
 		return Nama;
 	}
-	public void setNama(String Nama) {
-		this.Nama = Nama;
+	public void setNama(String nama) {
+		Nama = nama;
 	}
 	public String getJenkel() {
 		return Jenkel;
 	}
-	public void setJenkel(String Jenkel) {
-		this.Jenkel = Jenkel;
+	public void setJenkel(String jenkel) {
+		Jenkel = jenkel;
 	}
 	public String getTTL() {
 		return TTL;
 	}
-	public void setTTL(String TTL) {
-		this.TTL = TTL;
+	public void setTTL(String tTL) {
+		TTL = tTL;
 	}
 	public String getAlamat() {
 		return Alamat;
 	}
-	public void setAlamat(String Alamat) {
-		this.Alamat = Alamat;
+	public void setAlamat(String alamat) {
+		Alamat = alamat;
 	}
 	public String getPhone() {
 		return Phone;
 	}
-	public void setPhone(String Phone) {
-		this.Phone = Phone;
+	public void setPhone(String phone) {
+		Phone = phone;
 	}
+	
 }
