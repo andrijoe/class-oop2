@@ -5,7 +5,7 @@ public long id;
 public long id_Bank;
 public long id_cust;
 public long min_money;
-public long tenor;
+public long tenor; 
 public String tempo;
 public long getId() {
 	return id;
