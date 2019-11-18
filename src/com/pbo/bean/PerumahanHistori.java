@@ -1,6 +1,6 @@
 package com.pbo.bean;
 
-public class Perumahan_histori {
+public class PerumahanHistori {
 	private Long id;
 	private String cicilan;
 	private String nominal;
