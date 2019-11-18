@@ -12,7 +12,7 @@ import com.pbo.util.DbConnection;
 public class KtaCustomerrDao {
 	public List<KtaCustomerr> getListKtaCustomerr() {
 		List<KtaCustomerr> listBank = new ArrayList<KtaCustomerr>();
-		try {
+		try { 
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank";
 			PreparedStatement ps = conn.prepareStatement(query);
