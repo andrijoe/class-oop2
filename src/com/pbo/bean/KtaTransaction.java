@@ -2,7 +2,7 @@ package com.pbo.bean;
 
 public class KtaTransaction {
 public long id;
-public long id_Bank;
+public long id_Bank; 
 public long id_cust;
 public long min_money;
 public long tenor; 

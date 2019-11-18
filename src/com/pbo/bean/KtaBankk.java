@@ -2,7 +2,7 @@ package com.pbo.bean;
 
 public class KtaBankk {
 
-	private Long id; 
+	private Long id;  
 	private String bank_name;
 	private String address;
 	private String phone;
