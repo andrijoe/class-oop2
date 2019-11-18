@@ -1,15 +1,15 @@
 package com.pbo.bean;
 
 public class Bank {
-	private Long id;
+	private Long id_bank;
 	private String name;
 	private String address;
 	private String isDelete;
 	public Long getId() {
-		return id;
+		return id_bank;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setId( Long id_bank) {
+		this.id_bank = id_bank;
 	}
 	public String getAddress() {
 		return address;
