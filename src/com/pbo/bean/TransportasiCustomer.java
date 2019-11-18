@@ -8,7 +8,7 @@ public class TransportasiCustomer {
 	private String address;
 	private Long phone;
 	private String email;
-	public Long getId() {
+	public Long getId() { 
 		return id;
 	}
 	public void setId(Long id) {
