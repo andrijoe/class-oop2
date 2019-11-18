@@ -26,6 +26,7 @@ public class LeasingDao {
 				leasing.setPhone(rs.getString("phone"));
 				listLeasing.add(leasing);
 			}
+			
 
 			if (listLeasing.size() == 0) {
 				listLeasing = null;
