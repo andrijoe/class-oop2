@@ -45,4 +45,5 @@ public class LeasingCicilan {
 		Tgl_Cicilan = tgl_Cicilan;
 	}
 	
+	
 }
