@@ -6,7 +6,7 @@ public class KtaBankk {
 	private String bank_name;
 	private String address;
 	private String phone;
-	private String email;
+	private String email;    
 	public Long getId() {
 		return id;
 	}

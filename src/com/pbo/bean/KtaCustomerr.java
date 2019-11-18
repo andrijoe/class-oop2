@@ -2,18 +2,18 @@ package com.pbo.bean;
 
 public class KtaCustomerr {
 
-	private Long Id;
+	private Long Id_cust;
 	private String Name;
 	private String Address;
 	private String Jobs;
 	private String KTP_Number;
 	private String DateOfBirth;
 	private String Gender;
-	public Long getId() {
-		return Id;
+	public Long getId_cust() {
+		return Id_cust;
 	}
-	public void setId(Long id) {
-		Id = id;
+	public void setId_cust(Long id_cust) {
+		Id_cust = id_cust;
 	}
 	public String getName() {
 		return Name;
@@ -51,7 +51,5 @@ public class KtaCustomerr {
 	public void setGender(String gender) {
 		Gender = gender;
 	}
-	
-	
 	
 }
