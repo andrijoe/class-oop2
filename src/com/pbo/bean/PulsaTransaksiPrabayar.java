@@ -4,7 +4,7 @@ public class PulsaTransaksiPrabayar {
 	private Long id;
 	private String No_Tlp;
 	private String Nominal;
-	private String isValid;
+	private String Valid;
 	private String Tgl_Trx;
 	public Long getId() {
 		return id;
@@ -24,11 +24,11 @@ public class PulsaTransaksiPrabayar {
 	public void setNominal(String nominal) {
 		Nominal = nominal;
 	}
-	public String getIsValid() {
-		return isValid;
+	public String getValid() {
+		return Valid;
 	}
-	public void setIsValid(String isValid) {
-		this.isValid = isValid;
+	public void setValid(String valid) {
+		Valid = valid;
 	}
 	public String getTgl_Trx() {
 		return Tgl_Trx;
