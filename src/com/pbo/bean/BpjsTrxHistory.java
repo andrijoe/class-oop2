@@ -1,6 +1,6 @@
 package com.pbo.bean;
 
-public class BpjsTrx {
+public class BpjsTrxHistory {
 public long id_trx;
 public String tgl_trx; 
 public boolean isvalid;
