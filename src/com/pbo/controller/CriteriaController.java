@@ -3,29 +3,26 @@ package com.pbo.controller;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ngalongware.bean.Criteria;
-import com.ngalongware.dao.CriteriaDao;
-import com.ngalongware.util.Connection;
-import com.ngalongware.util.Constant;
-import com.ngalongware.util.Helper;
-import com.ngalongware.util.SessionManager;
+import com.pbo.bean.Criteria;
+import com.pbo.dao.CriteriaDao;
+import com.pbo.util.Connection;
+import com.pbo.util.Constant;
+import com.pbo.util.Helper;
+import com.pbo.util.SessionManager;
 
 @Controller
 public class CriteriaController extends BaseController {
-	private Logger logger = Logger.getLogger(CriteriaController.class);
 
-	@RequestMapping(value=Constant.ADMIN_EXTENDED + "criteria", method=RequestMethod.GET)
+	@RequestMapping(value="criteria", method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
-		String page = Constant.CRITERIA_INDEX;
-		page = Helper.loggedCheck(page);
+		String page = "/criteria";
 
 		response.setViewName(page);
 		return response;
@@ -39,7 +36,7 @@ public class CriteriaController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value=Constant.ADMIN_EXTENDED + "criteria/form", method = RequestMethod.GET)
+	@RequestMapping(value="criteria/form", method = RequestMethod.GET)
 	public ModelAndView form(String idParameter) {
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -58,7 +55,7 @@ public class CriteriaController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value=Constant.ADMIN_EXTENDED + "criteria/save_update", method = RequestMethod.POST)
+	@RequestMapping(value="criteria/save_update", method = RequestMethod.POST)
 	public ModelAndView insertUpdate(String bhsAsing, String disiplinShalat, String doa, String mahfudhot, String muhadarah,
 			String pai, String prilaku, String rapor, String tahfidQuran) {
 		SessionManager sessionManager = SessionManager.getInstance();
@@ -109,7 +106,7 @@ public class CriteriaController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value=Constant.ADMIN_EXTENDED + "criteria/delete", method = RequestMethod.GET)
+	@RequestMapping(value="criteria/delete", method = RequestMethod.GET)
 	public ModelAndView delete(String idParameter) {
 //		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
@@ -120,7 +117,7 @@ public class CriteriaController extends BaseController {
 		Criteria parameter = parameterDao.getParameterById(idParameter);
 
 		if (!parameterDao.update(parameter)) {
-			logger.info("Error database");
+			System.out.println("Error database");
 		}
 
 		String page = Constant.CRITERIA_INDEX;
