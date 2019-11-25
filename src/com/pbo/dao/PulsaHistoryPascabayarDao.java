@@ -6,40 +6,38 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pbo.bean.PerumahanHistori;
+import com.pbo.bean.PulsaHistoryPascabayar;
 import com.pbo.util.DbConnection;
 
-public class PerumahanHistoriDao {
-	public List<PerumahanHistori> getListPerumahanHistori() {
-		List<PerumahanHistori> listPerumahanHistori = new ArrayList<PerumahanHistori>();
+public class PulsaHistoryPascabayarDao {
+	public List<PulsaHistoryPascabayar> getListPulsaHistoryPascabayar() {
+		List<PulsaHistoryPascabayar> listPulsaHistoryPascabayar = new ArrayList<PulsaHistoryPascabayar>();
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				PerumahanHistori perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
-				listPerumahanHistori.add(perumahanhistori);
+				PulsaHistoryPascabayar pulsahistorypascabayar = new PulsaHistoryPascabayar();
+				pulsahistorypascabayar.setIdtrxpostpaid(rs.getString("Idtrxpostpaid"));
+				pulsahistorypascabayar.setId(rs.getLong("id"));
+				pulsahistorypascabayar.setPaymentdate(rs.getString("paymentdate"));
+				listPulsaHistoryPascabayar.add(pulsahistorypascabayar);
 			}
 			
-			if (listPerumahanHistori.size() == 0) {
-				listPerumahanHistori = null;
+			if (listPulsaHistoryPascabayar.size() == 0) {
+				listPulsaHistoryPascabayar = null;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return listPerumahanHistori;
+		return listPulsaHistoryPascabayar;
 	}
 	
-	public PerumahanHistori getBankById(String id) {
-		PerumahanHistori perumahanhistori = null;
+	public PulsaHistoryPascabayar getBankById(String id) {
+		PulsaHistoryPascabayar pulsahistorypascabayar= null;
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank where id = ?";
@@ -47,19 +45,18 @@ public class PerumahanHistoriDao {
 			ps.setInt(1, Integer.parseInt(id));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
+				pulsahistorypascabayar = new PulsaHistoryPascabayar();
+				pulsahistorypascabayar.setIdtrxpostpaid(rs.getString("Idtrxpostpaid"));
+				pulsahistorypascabayar.setId(rs.getLong("id"));
+				pulsahistorypascabayar.setPaymentdate(rs.getString("paymentdate"));
+				
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return perumahanhistori;
+		return pulsahistorypascabayar;
 	}
 	
 	public boolean deleteBank(String id) {
@@ -80,28 +77,26 @@ public class PerumahanHistoriDao {
 		return true;
 	}
 	
-	public boolean saveUpdateBank(PerumahanHistori perumahanhistori) {
+	public boolean saveUpdateBank(PulsaHistoryPascabayar pulsahistorypascabayar) {
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "insert into mbank "
 					+ "(name, address, isdelete) values "
 					+ "(?, ?, ?)";
 			
-			if (perumahanhistori.getId() != null) {
+			if (pulsahistorypascabayar.getId() != null) {
 				query = "update mbank set name = ?, "
 						+ "address = ?, isdelete = ? "
 						+ "where id = ?";
 			}
 			
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, perumahanhistori.getCicilan());
-			ps.setString(2, perumahanhistori.getNominal());
-			ps.setString(3, perumahanhistori.getDenda());
-			ps.setString(3, perumahanhistori.getTglcicil());
-			ps.setString(4, "0");
+			ps.setString(1, pulsahistorypascabayar.getIdtrxpostpaid());
+			ps.setString(2, pulsahistorypascabayar.getPaymentdate());
+			ps.setString(3, "0");
 			
-			if (perumahanhistori.getId() != null) {
-				ps.setLong(5, perumahanhistori.getId());
+			if (pulsahistorypascabayar.getId() != null) {
+				ps.setLong(4, pulsahistorypascabayar.getId());
 			}
 			
 			ps.executeUpdate();
@@ -113,5 +108,4 @@ public class PerumahanHistoriDao {
 		
 		return true;
 	}
-	
 }

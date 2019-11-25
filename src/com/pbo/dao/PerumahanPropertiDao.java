@@ -6,40 +6,39 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pbo.bean.PerumahanHistori;
+import com.pbo.bean.PerumahanProperti;
 import com.pbo.util.DbConnection;
 
-public class PerumahanHistoriDao {
-	public List<PerumahanHistori> getListPerumahanHistori() {
-		List<PerumahanHistori> listPerumahanHistori = new ArrayList<PerumahanHistori>();
+public class PerumahanPropertiDao {
+	public List<PerumahanProperti> getListPerumahanProperti() {
+		List<PerumahanProperti> listPerumahanProperti = new ArrayList<PerumahanProperti>();
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				PerumahanHistori perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
-				listPerumahanHistori.add(perumahanhistori);
+				PerumahanProperti perumahanproperti = new PerumahanProperti();
+				perumahanproperti.setId(rs.getLong("id"));
+				perumahanproperti.setType(rs.getString("type"));
+				perumahanproperti.setAddress(rs.getString("address"));
+				perumahanproperti.setVendor(rs.getString("vendor"));
+				listPerumahanProperti.add(perumahanproperti);
 			}
 			
-			if (listPerumahanHistori.size() == 0) {
-				listPerumahanHistori = null;
+			if (listPerumahanProperti.size() == 0) {
+				listPerumahanProperti = null;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return listPerumahanHistori;
+		return listPerumahanProperti;
 	}
 	
-	public PerumahanHistori getBankById(String id) {
-		PerumahanHistori perumahanhistori = null;
+	public PerumahanProperti getBankById(String id) {
+		PerumahanProperti perumahanproperti = null;
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank where id = ?";
@@ -47,19 +46,18 @@ public class PerumahanHistoriDao {
 			ps.setInt(1, Integer.parseInt(id));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
+				perumahanproperti = new PerumahanProperti();
+				perumahanproperti.setId(rs.getLong("id"));
+				perumahanproperti.setType(rs.getString("type"));
+				perumahanproperti.setAddress(rs.getString("address"));
+				perumahanproperti.setVendor(rs.getString("vendor"));
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return perumahanhistori;
+		return perumahanproperti;
 	}
 	
 	public boolean deleteBank(String id) {
@@ -80,28 +78,27 @@ public class PerumahanHistoriDao {
 		return true;
 	}
 	
-	public boolean saveUpdateBank(PerumahanHistori perumahanhistori) {
+	public boolean saveUpdateBank(PerumahanProperti perumahanproperti) {
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "insert into mbank "
 					+ "(name, address, isdelete) values "
 					+ "(?, ?, ?)";
 			
-			if (perumahanhistori.getId() != null) {
+			if (perumahanproperti.getId() != null) {
 				query = "update mbank set name = ?, "
 						+ "address = ?, isdelete = ? "
 						+ "where id = ?";
 			}
 			
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, perumahanhistori.getCicilan());
-			ps.setString(2, perumahanhistori.getNominal());
-			ps.setString(3, perumahanhistori.getDenda());
-			ps.setString(3, perumahanhistori.getTglcicil());
+			ps.setString(1, perumahanproperti.getType());
+			ps.setString(2, perumahanproperti.getAddress());
+			ps.setString(3, perumahanproperti.getVendor());
 			ps.setString(4, "0");
 			
-			if (perumahanhistori.getId() != null) {
-				ps.setLong(5, perumahanhistori.getId());
+			if (perumahanproperti.getId() != null) {
+				ps.setLong(5, perumahanproperti.getId());
 			}
 			
 			ps.executeUpdate();
@@ -115,3 +112,4 @@ public class PerumahanHistoriDao {
 	}
 	
 }
+

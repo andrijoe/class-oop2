@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://103.82.242.90:3306/dsssawstudentranking?useSSL=false&amp;serverTimezone=UTC</property>
-        <property name="hibernate.connection.username">andrie</property>
-        <property name="hibernate.connection.password">12Qpalzmxn</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="show_sql">true</property>
-        
-        <property name="hibernate.c3p0.max_size">20</property>
-        <property name="hibernate.c3p0.max_statements">50</property>
-        <property name="hibernate.c3p0.timeout">300</property>
-        <property name="hibernate.c3p0.min_size">5</property>
-        <property name="hibernate.c3p0.idle_test_period">3000</property>
-        
-        <mapping class="com.pbo.bean.AuditBean"/>
-        <mapping class="com.pbo.bean.Bank"/>
-        <mapping class="com.pbo.bean.Criteria"/>
-        <mapping class="com.pbo.bean.Entyty"/>
-    </session-factory>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+  <property name="hibernate.connection.url">jdbc:mysql://103.82.242.90:3306/dsssawstudentranking?useSSL=false&amp;serverTimezone=UTC</property>
+  <property name="hibernate.connection.username">andrie</property>
+  <property name="hibernate.connection.password">12Qpalzmxn</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="show_sql">true</property>
+  <property name="hibernate.c3p0.max_size">20</property>
+  <property name="hibernate.c3p0.max_statements">50</property>
+  <property name="hibernate.c3p0.timeout">300</property>
+  <property name="hibernate.c3p0.min_size">5</property>
+  <property name="hibernate.c3p0.idle_test_period">3000</property>
+  <mapping class="com.pbo.bean.AuditBean"/>
+  <mapping class="com.pbo.bean.Bank"/>
+  <mapping class="com.pbo.bean.Criteria"/>
+  <mapping class="com.pbo.bean.Entyty"/>
+  <mapping class="com.pbo.bean.PerumahanProperti"/>
+  <mapping class="com.pbo.bean.PerumahanKpr"/>
+  <mapping class="com.pbo.bean.PerumahanHistori"/>
+ </session-factory>
 </hibernate-configuration>

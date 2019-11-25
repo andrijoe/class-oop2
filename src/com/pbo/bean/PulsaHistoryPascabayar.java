@@ -2,7 +2,7 @@ package com.pbo.bean;
 
 public class PulsaHistoryPascabayar {
 	private Long id;
-	private String idtrxpostpaid;
+	private String Idtrxpostpaid;
 	private String paymentdate;
 	
 	public Long getId() {
@@ -12,10 +12,10 @@ public class PulsaHistoryPascabayar {
 		this.id = id;
 	}
 	public String getIdtrxpostpaid() {
-		return idtrxpostpaid;
+		return Idtrxpostpaid;
 	}
-	public void setIdtrxpostpaid(String idtrxpostpaid) {
-		this.idtrxpostpaid = idtrxpostpaid;
+	public void setIdtrxpostpaid(String Idtrxpostpaid) {
+		this.Idtrxpostpaid = Idtrxpostpaid;
 	}
 	public String getPaymentdate() {
 		return paymentdate;

@@ -6,40 +6,39 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pbo.bean.PerumahanHistori;
+import com.pbo.bean.PulsaProvider;
+
 import com.pbo.util.DbConnection;
 
-public class PerumahanHistoriDao {
-	public List<PerumahanHistori> getListPerumahanHistori() {
-		List<PerumahanHistori> listPerumahanHistori = new ArrayList<PerumahanHistori>();
+public class PulsaProviderDao {
+	public List<PulsaProvider> getListBank() {
+		List<PulsaProvider> listPulsaProvider = new ArrayList<PulsaProvider>();
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				PerumahanHistori perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
-				listPerumahanHistori.add(perumahanhistori);
+				PulsaProvider pulsaprovider = new PulsaProvider();
+				pulsaprovider.setName(rs.getString("name"));
+				pulsaprovider.setId(rs.getLong("id"));
+				pulsaprovider.setDescription(rs.getString("description"));
+				listPulsaProvider.add(pulsaprovider);
 			}
 			
-			if (listPerumahanHistori.size() == 0) {
-				listPerumahanHistori = null;
+			if (listPulsaProvider.size() == 0) {
+				listPulsaProvider = null;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return listPerumahanHistori;
+		return listPulsaProvider;
 	}
 	
-	public PerumahanHistori getBankById(String id) {
-		PerumahanHistori perumahanhistori = null;
+	public PulsaProvider getBankById(String id) {
+		PulsaProvider pulsaprovider = null;
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank where id = ?";
@@ -47,19 +46,17 @@ public class PerumahanHistoriDao {
 			ps.setInt(1, Integer.parseInt(id));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				perumahanhistori = new PerumahanHistori();
-				perumahanhistori.setId(rs.getLong("id"));
-				perumahanhistori.setCicilan(rs.getString("cicilan"));
-				perumahanhistori.setNominal(rs.getString("nominal"));
-				perumahanhistori.setDenda(rs.getString("denda"));
-				perumahanhistori.setTglcicil(rs.getString("tglcicil"));
+				pulsaprovider = new PulsaProvider();
+				pulsaprovider.setName(rs.getString("name"));
+				pulsaprovider.setId(rs.getLong("id"));
+				pulsaprovider.setDescription(rs.getString("description"));
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return perumahanhistori;
+		return pulsaprovider;
 	}
 	
 	public boolean deleteBank(String id) {
@@ -80,28 +77,26 @@ public class PerumahanHistoriDao {
 		return true;
 	}
 	
-	public boolean saveUpdateBank(PerumahanHistori perumahanhistori) {
+	public boolean saveUpdateBank(PulsaProvider pulsaprovider) {
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "insert into mbank "
 					+ "(name, address, isdelete) values "
 					+ "(?, ?, ?)";
 			
-			if (perumahanhistori.getId() != null) {
+			if (pulsaprovider.getId() != null) {
 				query = "update mbank set name = ?, "
 						+ "address = ?, isdelete = ? "
 						+ "where id = ?";
 			}
 			
 			PreparedStatement ps = conn.prepareStatement(query);
-			ps.setString(1, perumahanhistori.getCicilan());
-			ps.setString(2, perumahanhistori.getNominal());
-			ps.setString(3, perumahanhistori.getDenda());
-			ps.setString(3, perumahanhistori.getTglcicil());
-			ps.setString(4, "0");
+			ps.setString(1, pulsaprovider.getName());
+			ps.setString(2, pulsaprovider.getDescription());
+			ps.setString(3, "0");
 			
-			if (perumahanhistori.getId() != null) {
-				ps.setLong(5, perumahanhistori.getId());
+			if (pulsaprovider.getId() != null) {
+				ps.setLong(4, pulsaprovider.getId());
 			}
 			
 			ps.executeUpdate();
@@ -113,5 +108,4 @@ public class PerumahanHistoriDao {
 		
 		return true;
 	}
-	
 }
