@@ -6,42 +6,42 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pbo.bean.LeasingTransaction;
+import com.pbo.bean.LeasingCostumer;
 import com.pbo.util.DbConnection;
 
-public class LeasingTransactionDao {
-	public List<LeasingTransaction> getListLeasingTransaction() {
-		List<LeasingTransaction> listLeasingTransaction = new ArrayList<LeasingTransaction>();
+public class LeasingCostumerDao {
+	public List<LeasingCostumer> getLeasingCostumerDaos() {
+		List<LeasingCostumer> listLeasingCostumer = new ArrayList<LeasingCostumer>();
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank";
 			PreparedStatement ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				LeasingTransaction Transaction = new LeasingTransaction();
-				Transaction.setNokontrak(rs.getString("nokontrak"));
-				Transaction.setId(rs.getLong("id"));
-				Transaction.setIdLeasing(rs.getString("idLeasing"));
-				Transaction.setIdCustomer(rs.getString("idCustomer"));
-				Transaction.setNominal(rs.getString("nominal"));
-				Transaction.setTglTry(rs.getString("tglTry"));
-				Transaction.setIdVehicle(rs.getString("IdVehicle"));
-				listLeasingTransaction.add(Transaction);
+				LeasingCostumer Costumer = new LeasingCostumer();
+				Costumer.setNo_KTP(rs.getString("no_ktp"));
+				Costumer.setId(rs.getLong("id"));
+				Costumer.setNama(rs.getString("nama"));
+				Costumer.setJenkel(rs.getString("jenkel"));
+				Costumer.setTTL(rs.getString("ttl"));
+				Costumer.setAlamat(rs.getString("alamat"));
+				Costumer.setPhone(rs.getString("Phone"));
+				listLeasingCostumer.add(Costumer);
 			}
 			
-			if (listLeasingTransaction.size() == 0) {
-				listLeasingTransaction = null;
+			if (listLeasingCostumer.size() == 0) {
+				listLeasingCostumer = null;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return listLeasingTransaction;
+		return listLeasingCostumer;
 	}
 	
-	public LeasingTransaction getLeasingTransactionById(String id) {
-		LeasingTransaction transaction = null;
+	public LeasingCostumerDao getLeasingCostumerById(String id) {
+		LeasingCostumerDao costumer = null;
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "select * from mbank where id = ?";
@@ -49,21 +49,21 @@ public class LeasingTransactionDao {
 			ps.setInt(1, Integer.parseInt(id));
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				transaction = new LeasingTransaction();
-				transaction.setNokontrak(rs.getString("nokontrak"));
-				transaction.setId(rs.getLong("id"));
-				transaction.setIdLeasing(rs.getString("idLeasing"));
-				transaction.setIdCustomer(rs.getString("idCustomer"));
-				transaction.setNominal(rs.getString("nominal"));
-				transaction.setTglTry(rs.getString("tglTry"));
-				transaction.setIdVehicle(rs.getString("IdVehicle"));
+				LeasingCostumer Costumer = new LeasingCostumer();
+				Costumer.setNo_KTP(rs.getString("no_ktp"));
+				Costumer.setId(rs.getLong("id"));
+				Costumer.setNama(rs.getString("nama"));
+				Costumer.setJenkel(rs.getString("jenkel"));
+				Costumer.setTTL(rs.getString("ttl"));
+				Costumer.setAlamat(rs.getString("alamat"));
+				Costumer.setPhone(rs.getString("Phone"));
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return transaction;
+		return costumer;
 	}
 	
 	public boolean deleteLeasingTransaction(String id) {
@@ -84,14 +84,14 @@ public class LeasingTransactionDao {
 		return true;
 	}
 	
-	public boolean saveUpdateLeasingTransaction(LeasingTransaction Transaction) {
+	public boolean saveUpdateLeasingCostumer(LeasingCostumer Costumer) {
 		try {
 			Connection conn = DbConnection.getConnection();
 			String query = "insert into mbank "
 					+ "(name, address, isdelete) values "
 					+ "(?, ?, ?)";
 			
-			if (Transaction.getId() != null) {
+			if (Costumer.getId() != null) {
 				query = "update mbank set name = ?, "
 						+ "address = ?, isdelete = ? "
 						+ "where id = ?";
@@ -99,13 +99,13 @@ public class LeasingTransactionDao {
 			
 			PreparedStatement ps = conn.prepareStatement(query);
 			/*
-			 * ps.setString(1, Transaction.getName()); ps.setString(2,
-			 * Transaction.getAddress());
+			 * ps.setString(1, Costumer.getName()); ps.setString(2,
+			 * Costumer.getAddress());
 			 */
 			ps.setString(3, "0");
 			
-			if (Transaction.getId() != null) {
-				ps.setLong(4, Transaction.getId());
+			if (Costumer.getId() != null) {
+				ps.setLong(4, Costumer.getId());
 			}
 			
 			ps.executeUpdate();
@@ -117,4 +117,5 @@ public class LeasingTransactionDao {
 		
 		return true;
 	}
+
 }
