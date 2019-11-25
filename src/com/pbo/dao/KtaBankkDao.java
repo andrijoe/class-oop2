@@ -106,7 +106,7 @@ public KtaBankk getBankById(String id) {
 			}
 			
 			ps.executeUpdate();
-			
+			 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
