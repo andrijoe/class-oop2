@@ -33,7 +33,7 @@ public class LeasingTransactionController extends BaseController {
 	public ModelAndView initParameter(ModelAndView response) {
 		Connection connection = Connection.getInstance();
 		LeasingTransactionDao parameterDao = new LeasingTransactionDao(connection);
-		List <LeasingTransaction> listParameter = parameterDao.getListParameter();
+		List <LeasingTransaction> listParameter = parameterDao.getListLeasingTransaction();
 		response.addObject("LeasingTransaction", listParameter.get(0));
 		return response;
 	}
