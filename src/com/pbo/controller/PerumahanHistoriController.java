@@ -9,20 +9,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pbo.bean.Criteria;
+import com.pbo.bean.PerumahanHistori;
 import com.pbo.dao.CriteriaDao;
+import com.pbo.dao.PerumahanHistoriDao;
 import com.pbo.util.Connection;
 import com.pbo.util.Constant;
 import com.pbo.util.Helper;
 import com.pbo.util.SessionManager;
 
 @Controller
-public class CriteriaController extends BaseController {
-
-	@RequestMapping(value="criteria", method=RequestMethod.GET)
+public class PerumahanHistoriController extends BaseController {
+	@RequestMapping(value="Costumer", method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
-		String page = "/criteria";
+		String page = "/costumer";
 
 		response.setViewName(page);
 		return response;
@@ -30,13 +31,13 @@ public class CriteriaController extends BaseController {
 
 	public ModelAndView initParameter(ModelAndView response) {
 		Connection connection = Connection.getInstance();
-		CriteriaDao parameterDao = new CriteriaDao(connection);
-		List <Criteria> listParameter = parameterDao.getListParameter();
-		response.addObject("criteria", listParameter.get(0));
+		PerumahanHistoriDao parameterDao = new PerumahanHistoriDao(connection);
+		List <Costumer> listParameter = parameterDao.getListParameter();
+		response.addObject("costumer", listParameter.get(0));
 		return response;
 	}
 
-	@RequestMapping(value="criteria/form", method = RequestMethod.GET)
+	@RequestMapping(value="costumer/form", method = RequestMethod.GET)
 	public ModelAndView form(String idParameter) {
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -46,8 +47,8 @@ public class CriteriaController extends BaseController {
 		page = Helper.loggedCheck(page);
 
 		if (idParameter != null && !idParameter.isEmpty()) {
-			CriteriaDao parameterDao = new CriteriaDao(connection);
-			Criteria parameter = parameterDao.getParameterById(idParameter);
+			PerumahanHistoriDao parameterDao = new PerumahanHistoriDao(connection);
+			PerumahanHistoriController parameter = parameterDao.getParameterById(idParameter);
 			response.addObject("parameter", parameter);
 		}
 
@@ -55,9 +56,9 @@ public class CriteriaController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value="criteria/save_update", method = RequestMethod.POST)
-	public ModelAndView insertUpdate(String bhsAsing, String disiplinShalat, String doa, String mahfudhot, String muhadarah,
-			String pai, String prilaku, String rapor, String tahfidQuran) {
+	@RequestMapping(value="costumer/save_update", method = RequestMethod.POST)
+	public ModelAndView insertUpdate(String no_ktp, String id, String nama, String jenkel, String ttl,
+			String alamat, String phone) {
 		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -65,40 +66,38 @@ public class CriteriaController extends BaseController {
 
 		String page = Constant.CRITERIA_INDEX;
 		page = Helper.loggedCheck(page);
-		CriteriaDao parameterDao = new CriteriaDao(connection);
-		List<Criteria> listCriteria = parameterDao.getListParameter();
-		Criteria criteria = null;
+		PerumahanHistoriDao parameterDao = new PerumahanHistoriDao(connection);
+		List<Costumer> listCostumer = parameterDao.getListParameter();
+		Costumer perumahanhistori  = null;
 		Date date = new Date();
 		
-		if (listCriteria != null) {
-			criteria = listCriteria.get(0);
-			criteria.setBhsAsing(Double.parseDouble(bhsAsing));
-			criteria.setDisiplinShalat(Double.parseDouble(disiplinShalat));
-			criteria.setDoa(Double.parseDouble(doa));
-			criteria.setMahfudhot(Double.parseDouble(mahfudhot));
-			criteria.setMuhadarah(Double.parseDouble(muhadarah));
-			criteria.setPai(Double.parseDouble(pai));
-			criteria.setPrilaku(Double.parseDouble(prilaku));
-			criteria.setRapor(Double.parseDouble(rapor));
-			criteria.setTahfidQuran(Double.parseDouble(tahfidQuran));
+		if (listCostumer != null) {
+			perumahanhistori  = listCostumer.get(0);
+			perumahanhistori .setNo_KTP(no_ktp);
+			perumahanhistori .setId(id);
+			perumahanhistori .setNama(nama);
+			perumahanhistori .setJenkel(jenkel);
+			perumahanhistori .setTTL(ttl);
+			perumahanhistori .setAlamat(alamat);
+			perumahanhistori .setPhone(phone);
 			
-			criteria.setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
-			criteria.setUpdatedDate(date);
 			
-			parameterDao.update(criteria);
+			perumahanhistori .setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
+			perumahanhistori .setUpdatedDate(date);
+			
+			parameterDao.update(perumahanhistori );
 		} else {
-			criteria = new Criteria();
-			criteria.setBhsAsing(Double.parseDouble(bhsAsing));
-			criteria.setDisiplinShalat(Double.parseDouble(disiplinShalat));
-			criteria.setDoa(Double.parseDouble(doa));
-			criteria.setMahfudhot(Double.parseDouble(mahfudhot));
-			criteria.setMuhadarah(Double.parseDouble(muhadarah));
-			criteria.setPai(Double.parseDouble(pai));
-			criteria.setPrilaku(Double.parseDouble(prilaku));
-			criteria.setRapor(Double.parseDouble(rapor));
-			criteria.setTahfidQuran(Double.parseDouble(tahfidQuran));
+			perumahanhistori  = new Costumer();
+			perumahanhistori .setNo_KTP(no_ktp);
+			perumahanhistori .setId(id);
+			perumahanhistori .setNama(nama);
+			perumahanhistori .setJenkel(jenkel);
+			perumahanhistori .setTTL(ttl);
+			perumahanhistori .setAlamat(alamat);
+			perumahanhistori .setPhone(phone);
 			
-			parameterDao.save(criteria);
+			
+			parameterDao.save(perumahanhistori );
 		}
 		
 		response = initParameter(response);
@@ -106,15 +105,15 @@ public class CriteriaController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value="criteria/delete", method = RequestMethod.GET)
+	@RequestMapping(value="costumer/delete", method = RequestMethod.GET)
 	public ModelAndView delete(String idParameter) {
 //		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
 
-		CriteriaDao parameterDao = new CriteriaDao(connection);
-		Criteria parameter = parameterDao.getParameterById(idParameter);
+		PerumahanHistoriDao parameterDao = new LeasingCostumerDao(connection);
+		PerumahanHistori parameter = parameterDao.getParameterById(idParameter);
 
 		if (!parameterDao.update(parameter)) {
 			System.out.println("Error database");
