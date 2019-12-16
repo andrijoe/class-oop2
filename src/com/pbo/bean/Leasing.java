@@ -1,59 +1,81 @@
 package com.pbo.bean;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="leasing")
 public class Leasing {
-	private Long id;
-	private String nama_leasing;
-	private String alamat;
-	private String tipe;
-	private String phone;
-	private String email;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private Long Id;
+	
+	@Column(name="nama_leasing")
+	private Double namaLeasing;
+	
+	@Column(name="alamat")
+	private Double Alamat;
+	
+	@Column(name="tipe")
+	private Double Tipe;
+	
+	@Column(name="phone")
+	private Double Phone;
+	
+	@Column(name="email")
+	private Double Email;
+	
 
 	public Long getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.Id = id;
 	}
 
-	public String getNama_leasing() {
-		return nama_leasing;
+	public Double getNama_leasing() {
+		return namaLeasing;
 	}
 
-	public void setNama_leasing(String nama_leasing) {
-		this.nama_leasing = nama_leasing;
+	public void setNama_leasing(Double nama_leasing) {
+		this.namaLeasing = nama_leasing;
 	}
 
-	public String getAlamat() {
-		return alamat;
+	public Double getAlamat() {
+		return Alamat;
 	}
 
-	public void setAlamat(String alamat) {
-		this.alamat = alamat;
+	public void setAlamat(Double alamat) {
+		this.Alamat = alamat;
 	}
 
-	public String getTipe() {
-		return tipe;
+	public Double getTipe() {
+		return Tipe;
 	}
 
-	public void setTipe(String tipe) {
-		this.tipe = tipe;
+	public void setTipe(Double tipe) {
+		this.Tipe = tipe;
 	}
 
-	public String getPhone() {
-		return phone;
+	public Double getPhone() {
+		return Phone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone(Double phone) {
+		this.Phone = phone;
 	}
 
-	public String getEmail() {
-		return email;
+	public Double getEmail() {
+		return Email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(Double email) {
+		this.Email = email;
 	}
 
 }
