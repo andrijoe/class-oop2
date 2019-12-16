@@ -1,10 +1,12 @@
 package com.pbo.bean;
 
-import src.bu.Column;
-import src.bu.Entity;
-import src.bu.GeneratedValue;
-import src.bu.Id;
-import src.bu.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name="Leasingcicilan")
