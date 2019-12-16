@@ -1,13 +1,37 @@
 package com.pbo.bean;
 
-public class KtaCustomerr {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private Long Id_cust; 
+@Entity
+@Table(name="mktacustomerr")
+public class KtaCustomerr {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cust")
+	private Long Id_cust;
+	
+	@Column(name="name")
 	private String Name; 
+	
+	@Column(name="address")
 	private String Address;
+	
+	@Column(name="jobs")
 	private String Jobs;
+	
+	@Column(name="ktp_number")
 	private String KTP_Number;
+	
+	@Column(name="dateofbirth")
 	private String DateOfBirth;
+	
+	@Column(name="gender")
 	private String Gender;
 	public Long getId_cust() {
 		return Id_cust;
