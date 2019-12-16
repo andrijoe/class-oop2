@@ -1,11 +1,23 @@
 package com.pbo.bean;
 
+@Entity
+@Table(name="promosi")
 public class promosi {
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	public Long Id;
+	
+	@Column(name="id_kendaraan")
 	public Long Id_kendaraan;
+	
+	@Column(name="diskon")
 	public String Diskon;
+	
+	@Column(name="platform")
 	public String Platform;
+	
 	public Long getId() {
 		return Id;
 	}
