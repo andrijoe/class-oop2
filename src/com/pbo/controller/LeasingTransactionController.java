@@ -84,7 +84,7 @@ public class LeasingTransactionController extends BaseController{
 			transaction.setNominal(nominal);
 			transaction.setTglTry(tglTry);
 			transaction.setIdVehicle(idVehicle);
-			parameterDao.saveUpdateLeasing(transaction);
+			parameterDao.saveUpdateLeasingTransaction(transaction);
 		}		
 		response = initParameter(response);
 		response.setViewName(page);
