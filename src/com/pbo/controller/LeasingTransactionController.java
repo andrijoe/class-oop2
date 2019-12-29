@@ -101,7 +101,7 @@ public class LeasingTransactionController extends BaseController{
 		LeasingTransactionDao parameterDao = new LeasingTransactionDao(connection);
 		LeasingTransaction parameter = parameterDao.getParameterById(idParameter);
 
-		if (!parameterDao.update(parameter)) {
+		if (!parameterDao.saveUpdateLeasingTransaction(parameter)) {
 			System.out.println("Error database");
 		}
 
