@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import com.ngalongware.bean.Access;
 
 public class Helper {
 	private static Logger logger = Logger.getLogger(Helper.class);
@@ -37,13 +36,11 @@ public class Helper {
 		}
 	}
 
-	public static String loggedCheck(String page) {
-		SessionManager sessionManager = SessionManager.getInstance();
-		if (sessionManager.getLoggedUser() == null) {
-			page = Constant.LOGIN_PAGE;
-		}
-		return page;
-	}
+	/*
+	 * public static String loggedCheck(String page) { SessionManager sessionManager
+	 * = SessionManager.getInstance(); if (sessionManager.getLoggedUser() == null) {
+	 * page = Constant.LOGIN_PAGE; } return page; }
+	 */
 
 	@SuppressWarnings("null")
 	public static Boolean verifyPassword(String idUser, String password, String new_password,
@@ -66,20 +63,15 @@ public class Helper {
 		return isPasswordValid;
 	}
 
-	public static Boolean verifyUsername(String username, List<Access> listUser, Access loggedUser) {
-		Boolean isUsernameValid = true;
-
-		if (!loggedUser.getUsername().equals(username)) {
-			for (int i = 0; i < listUser.size(); i++) {
-				Access user = listUser.get(i);
-				if (user.getUsername().equals(username)) {
-					isUsernameValid = false;
-					break;
-				}
-			}
-		}
-
-		return isUsernameValid;
-	}
+	/*
+	 * public static Boolean verifyUsername(String username, List<Access> listUser,
+	 * Access loggedUser) { Boolean isUsernameValid = true;
+	 * 
+	 * if (!loggedUser.getUsername().equals(username)) { for (int i = 0; i <
+	 * listUser.size(); i++) { Access user = listUser.get(i); if
+	 * (user.getUsername().equals(username)) { isUsernameValid = false; break; } } }
+	 * 
+	 * return isUsernameValid; }
+	 */
 
 }

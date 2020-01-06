@@ -6,9 +6,9 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ngalongware.bean.Entyty;
-import com.ngalongware.util.Connection;
-import com.ngalongware.util.Helper;
+import com.pbo.bean.Entyty;
+import com.pbo.util.Connection;
+import com.pbo.util.Helper;
 
 public class EntityDao extends BaseDao {
 	private Logger logger = Logger.getLogger(EntityDao.class);

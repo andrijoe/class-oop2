@@ -3,12 +3,12 @@ package com.pbo.dao;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ngalongware.bean.Criteria;
-import com.ngalongware.util.Connection;
-import com.ngalongware.util.Helper;
+import com.pbo.util.Connection;
+import com.pbo.util.Helper;
 
 public class CriteriaDao extends BaseDao {
 	private Logger logger = Logger.getLogger(CriteriaDao.class);

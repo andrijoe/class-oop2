@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
-import com.ngalongware.util.Connection;
-import com.ngalongware.util.Helper;
+import com.pbo.util.Connection;
+import com.pbo.util.Helper;
 
 public class BaseDao {
 	private Logger logger = Logger.getLogger(BaseDao.class);

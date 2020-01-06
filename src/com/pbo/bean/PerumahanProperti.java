@@ -1,10 +1,28 @@
 package com.pbo.bean;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="perumahanproperti")
 public class PerumahanProperti {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
+	@Column(name="type")
 	private String type;
+	@Column(name="address")
 	private String address;
+	@Column(name="vendor")
 	private String vendor;
+	
+	
 	public Long getId() {
 		return id;
 	}

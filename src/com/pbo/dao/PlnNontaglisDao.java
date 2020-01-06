@@ -1,12 +1,11 @@
 package com.pbo.dao;
 
-	import java.sql.Connection;
-	import java.sql.PreparedStatement;
-	import java.sql.ResultSet;
-	import java.util.ArrayList;
-	import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-	import com.pbo.bean.PerumahanHistori;
 import com.pbo.bean.PlnNontaglis;
 import com.pbo.util.DbConnection;
 
@@ -98,8 +97,8 @@ import com.pbo.util.DbConnection;
 				ps.setString(1, plnnontaglis.getTransaksi_type());
 				ps.setString(2, plnnontaglis.getBiaya());
 				ps.setString(3, plnnontaglis.getTgl_pembelian());
-				ps.setString(3, plnnontaglis.getBukti_transaksi());
-				ps.setString(4, "0");
+				ps.setString(4, plnnontaglis.getBukti_transaksi());
+				ps.setString(5, "0");
 				
 				if (plnnontaglis.getId() != null) {
 					ps.setLong(5, plnnontaglis.getId());

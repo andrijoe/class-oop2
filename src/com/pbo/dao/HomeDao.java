@@ -1,16 +1,15 @@
 package com.pbo.dao;
 
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Access;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.ngalongware.bean.Access;
-import com.ngalongware.bean.UserGroup;
-import com.ngalongware.util.Connection;
-import com.ngalongware.util.Helper;
+import com.pbo.util.Connection;
+import com.pbo.util.Helper;
 
 public class HomeDao extends BaseDao {
 	private Logger logger = Logger.getLogger(HomeDao.class);

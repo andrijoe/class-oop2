@@ -1,54 +1,81 @@
 package com.pbo.bean;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="mleasingcostumer")
+
 public class LeasingCostumer {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
-	private String No_KTP;
-	private String Nama;
-	private String Jenkel;
-	private String TTL;
-	private String Alamat;
-	private String Phone;
+	
+	@Column(name="no_ktp")
+	private Double no_KTP;
+	
+	@Column(name="nama")
+	private Double Nama;
+	
+	@Column(name="jenkel")
+	private Double Jenkel;
+	
+	@Column(name="ttl")
+	private Double TTL;
+	
+	@Column(name="alamat")
+	private Double Alamat;
+	
+	@Column(name="phone")
+	private Double Phone;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNo_KTP() {
-		return No_KTP;
+	public Double getNo_KTP() {
+		return no_KTP;
 	}
-	public void setNo_KTP(String no_KTP) {
-		No_KTP = no_KTP;
+	public void setNo_KTP(Double no_ktp) {
+		no_KTP = no_ktp;
 	}
-	public String getNama() {
+	public Double getNama() {
 		return Nama;
 	}
-	public void setNama(String nama) {
+	public void setNama(Double nama) {
 		Nama = nama;
 	}
-	public String getJenkel() {
+	public Double getJenkel() {
 		return Jenkel;
 	}
-	public void setJenkel(String jenkel) {
+	public void setJenkel(Double jenkel) {
 		Jenkel = jenkel;
 	}
-	public String getTTL() {
+	public Double getTTL() {
 		return TTL;
 	}
-	public void setTTL(String tTL) {
+	public void setTTL(Double tTL) {
 		TTL = tTL;
 	}
-	public String getAlamat() {
+	public Double getAlamat() {
 		return Alamat;
 	}
-	public void setAlamat(String alamat) {
+	public void setAlamat(Double alamat) {
 		Alamat = alamat;
 	}
-	public String getPhone() {
+	public Double getPhone() {
 		return Phone;
 	}
-	public void setPhone(String phone) {
+	public void setPhone(Double phone) {
 		Phone = phone;
 	}
 	

@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pbo.bean.Criteria;
-import com.pbo.bean.PerumahanProperti;
+import com.pbo.bean.PerumahanKpr;
 import com.pbo.dao.CriteriaDao;
-import com.pbo.dao.PerumahanPropertiDao;
+import com.pbo.dao.PerumahanKprDao;
 import com.pbo.util.Connection;
 import com.pbo.util.Constant;
 import com.pbo.util.Helper;
 import com.pbo.util.SessionManager;
 
 @Controller
-public class PerumahanPropertiController extends BaseController {
+public class PerumahanKprController extends BaseController {
 	
-	@RequestMapping(value="properti", method=RequestMethod.GET)
+	@RequestMapping(value="kpr", method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
-		String page = "/properti";
+		String page = "/kpr";
 
 		response.setViewName(page);
 		return response;
@@ -32,13 +31,13 @@ public class PerumahanPropertiController extends BaseController {
 
 	public ModelAndView initParameter(ModelAndView response) {
 		Connection connection = Connection.getInstance();
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		List <PerumahanProperti> listParameter = parameterDao.getListParameter();
-		response.addObject("PerumahanProperti", listParameter.get(0));
+		PerumahanKprDao parameterDao = new PerumahanKprDao(connection);
+		List <PerumahanKpr> listParameter = parameterDao.getListParameter();
+		response.addObject("PerumahanKpr", listParameter.get(0));
 		return response;
 	}
 
-	@RequestMapping(value="properti/form", method = RequestMethod.GET)
+	@RequestMapping(value="kpr/form", method = RequestMethod.GET)
 	public ModelAndView form(String idParameter) {
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -48,8 +47,8 @@ public class PerumahanPropertiController extends BaseController {
 		page = Helper.loggedCheck(page);
 
 		if (idParameter != null && !idParameter.isEmpty()) {
-			PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-			PerumahanProperti parameter = parameterDao.getParameterById(idParameter);
+			PerumahanKprDao parameterDao = new PerumahanKprDao(connection);
+			PerumahanKpr parameter = parameterDao.getParameterById(idParameter);
 			response.addObject("parameter", parameter);
 		}
 
@@ -57,8 +56,8 @@ public class PerumahanPropertiController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value="properti/save_update", method = RequestMethod.POST)
-	public ModelAndView insertUpdate(String id, String type, String address, String vendor) {
+	@RequestMapping(value="kpr/save_update", method = RequestMethod.POST)
+	public ModelAndView insertUpdate(Long id, String idhome, String harga, String bunga, String tenor, String totalHarga) {
 		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -66,30 +65,34 @@ public class PerumahanPropertiController extends BaseController {
 
 		String page = Constant.CRITERIA_INDEX;
 		page = Helper.loggedCheck(page);
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		List<PerumahanProperti> listProperti = parameterDao.getListParameter();
-		PerumahanProperti properti = null;
+		PerumahanKprDao parameterDao = new PerumahanKprDao(connection);
+		List<PerumahanKpr> listProperti = parameterDao.getListParameter();
+		PerumahanKpr kpr = null;
 		Date date = new Date();
 		
-		if (listProperti != null) {
-			properti = listProperti.get(0);
-			properti.setId(Long.parseLong(id));
-			properti.setType(type);
-			properti.setAddress(address);
-			properti.setVendor(vendor);
+		if (listKpr != null) {
+			kpr = listProperti.get(0);
+			kpr.setId(id);
+			kpr.setIdhome(idhome);
+			kpr.setHarga(harga);
+			kpr.setBunga(bunga);
+			kpr.setTenor(tenor);
+			kpr.setTotalHarga(totalHarga);
 			
-			properti.setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
-			properti.setUpdatedDate(date);
+			kpr.setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
+			kpr.setUpdatedDate(date);
 			
-			parameterDao.update(properti);
+			parameterDao.update(kpr);
 		} else {
-			properti = new PerumahanProperti();
-			properti.setId(Long.parseLong(id));
-			properti.setType(type);
-			properti.setAddress(address);
-			properti.setVendor(vendor);
+			kpr = new PerumahanKpr();
+			kpr.setId(id);
+			kpr.setIdhome(idhome);
+			kpr.setHarga(harga);
+			kpr.setBunga(bunga);
+			kpr.setTenor(tenor);
+			kpr.setTotalHarga(totalHarga);
 			
-			parameterDao.save(properti);
+			parameterDao.save(kpr);
 		}
 		
 		response = initParameter(response);
@@ -104,8 +107,8 @@ public class PerumahanPropertiController extends BaseController {
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
 
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		PerumahanProperti parameter = parameterDao.getParameterById(idParameter);
+		PerumahanKprDao parameterDao = new PerumahanKprDao(connection);
+		PerumahanKpr parameter = parameterDao.getParameterById(idParameter);
 
 		if (!parameterDao.update(parameter)) {
 			System.out.println("Error database");

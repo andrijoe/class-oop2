@@ -9,22 +9,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pbo.bean.Criteria;
-import com.pbo.bean.PerumahanProperti;
+import com.pbo.bean.PlnNontaglis;
 import com.pbo.dao.CriteriaDao;
-import com.pbo.dao.PerumahanPropertiDao;
+import com.pbo.dao.PlnNontaglisDao;
 import com.pbo.util.Connection;
 import com.pbo.util.Constant;
 import com.pbo.util.Helper;
 import com.pbo.util.SessionManager;
 
 @Controller
-public class PerumahanPropertiController extends BaseController {
-	
-	@RequestMapping(value="properti", method=RequestMethod.GET)
+public class PlnNontaglisController extends BaseController {
+	@RequestMapping(value="PlnNontaglis", method=RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
-		String page = "/properti";
+		String page = "/plnnontaglis";
 
 		response.setViewName(page);
 		return response;
@@ -32,13 +31,13 @@ public class PerumahanPropertiController extends BaseController {
 
 	public ModelAndView initParameter(ModelAndView response) {
 		Connection connection = Connection.getInstance();
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		List <PerumahanProperti> listParameter = parameterDao.getListParameter();
-		response.addObject("PerumahanProperti", listParameter.get(0));
+		PlnNontaglisDao parameterDao = new PlnNontaglisDao(connection);
+		List <PlnNontaglis> listParameter = parameterDao.getListParameter();
+		response.addObject("plnnontaglis", listParameter.get(0));
 		return response;
 	}
 
-	@RequestMapping(value="properti/form", method = RequestMethod.GET)
+	@RequestMapping(value="plnnontaglis/form", method = RequestMethod.GET)
 	public ModelAndView form(String idParameter) {
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -48,8 +47,8 @@ public class PerumahanPropertiController extends BaseController {
 		page = Helper.loggedCheck(page);
 
 		if (idParameter != null && !idParameter.isEmpty()) {
-			PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-			PerumahanProperti parameter = parameterDao.getParameterById(idParameter);
+			PlnNontaglisDao parameterDao = new PlnNontaglisDao(connection);
+			PlnNontaglis parameter = parameterDao.getParameterById(idParameter);
 			response.addObject("parameter", parameter);
 		}
 
@@ -57,8 +56,9 @@ public class PerumahanPropertiController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value="properti/save_update", method = RequestMethod.POST)
-	public ModelAndView insertUpdate(String id, String type, String address, String vendor) {
+	@RequestMapping(value="plnnontaglis/save_update", method = RequestMethod.POST)
+	public ModelAndView insertUpdate(String id, String transaksi_type, String biaya, String tgl_pembelian,
+			String bukti_transaksi) {
 		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
@@ -66,30 +66,36 @@ public class PerumahanPropertiController extends BaseController {
 
 		String page = Constant.CRITERIA_INDEX;
 		page = Helper.loggedCheck(page);
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		List<PerumahanProperti> listProperti = parameterDao.getListParameter();
-		PerumahanProperti properti = null;
+		PlnNontaglisDao parameterDao = new PlnNontaglisDao(connection);
+		List<PlnNontaglis> listPlnNontaglis = parameterDao.getListParameter();
+		PlnNontaglis plnnontaglis = null;
 		Date date = new Date();
 		
-		if (listProperti != null) {
-			properti = listProperti.get(0);
-			properti.setId(Long.parseLong(id));
-			properti.setType(type);
-			properti.setAddress(address);
-			properti.setVendor(vendor);
+		if (listPlnNontaglis != null) {
+			plnnontaglis = listPlnNontaglis.get(0);
+			plnnontaglis.setId(id);
+			plnnontaglis.setTransaksi_type(transaksi_type);
+			plnnontaglis.setBiaya(biaya);
+			plnnontaglis.setTgl_pembelian(tgl_pembelian);
+			plnnontaglis.setBukti_transaksi(bukti_transaksi);
 			
-			properti.setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
-			properti.setUpdatedDate(date);
 			
-			parameterDao.update(properti);
+			
+			plnnontaglis.setUpdatedAccess(sessionManager.getLoggedUser().getIdAccess());
+			plnnontaglis.setUpdatedDate(date);
+			
+			parameterDao.update(plnnontaglis);
 		} else {
-			properti = new PerumahanProperti();
-			properti.setId(Long.parseLong(id));
-			properti.setType(type);
-			properti.setAddress(address);
-			properti.setVendor(vendor);
+			plnnontaglis = new PlnNontaglis();
+			plnnontaglis.setId(id);
+			plnnontaglis.setTransaksi_type(transaksi_type);
+			plnnontaglis.setBiaya(biaya);
+			plnnontaglis.setTgl_pembelian(tgl_pembelian);
+			plnnontaglis.setBukti_transaksi(bukti_transaksi);
 			
-			parameterDao.save(properti);
+			
+			
+			parameterDao.save(plnnontaglis);
 		}
 		
 		response = initParameter(response);
@@ -97,15 +103,15 @@ public class PerumahanPropertiController extends BaseController {
 		return response;
 	}
 
-	@RequestMapping(value="properti/delete", method = RequestMethod.GET)
+	@RequestMapping(value="costumer/delete", method = RequestMethod.GET)
 	public ModelAndView delete(String idParameter) {
 //		SessionManager sessionManager = SessionManager.getInstance();
 		Connection connection = Connection.getInstance();
 		ModelAndView response = BaseController.model();
 		response = initParameter(response);
 
-		PerumahanPropertiDao parameterDao = new PerumahanPropertiDao(connection);
-		PerumahanProperti parameter = parameterDao.getParameterById(idParameter);
+		PlnNontaglisDao parameterDao = new PlnNontaglisDao(connection);
+		PlnNontaglis parameter = parameterDao.getParameterById(idParameter);
 
 		if (!parameterDao.update(parameter)) {
 			System.out.println("Error database");

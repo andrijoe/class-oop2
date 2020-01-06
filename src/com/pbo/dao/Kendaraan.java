@@ -1,3 +1,5 @@
 package com.pbo.dao;
 
-public class Kendaraan
+public class Kendaraan {
+	
+}
