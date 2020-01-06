@@ -1,68 +1,54 @@
 package com.pbo.bean;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="Ticketing")
 public class Ticketing {
-	@javax.persistence.Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Id")
-	public Long Id;
-	
-	@Column(name="Id_Kendaraan")
-	public Long Id_Kendaraan;
-	
-	@Column(name="Id_Costumer_Transportasi")
-	public Long Id_Costumer_Transportasi;
-	
-	@Column(name="Nominal")
-	public Long Nominal;
-	
-	@Column(name="Tujuan")
-	public String Tujuan;
-	
-	@Column(name="No_Ticket")
-	public Long No_Ticket;
-	
-	public Long getId() {
-		return Id;
-	}
-	public void setId(Long id) {
-		Id = id;
-	}
-	public Long getId_Kendaraan() {
-		return Id_Kendaraan;
-	}
-	public void setId_Kendaraan(Long id_Kendaraan) {
-		Id_Kendaraan = id_Kendaraan;
-	}
-	public Long getId_Costumer_Transportasi() {
-		return Id_Costumer_Transportasi;
-	}
-	public void setId_Costumer_Transportasi(Long id_Costumer_Transportasi) {
-		Id_Costumer_Transportasi = id_Costumer_Transportasi;
-	}
-	public Long getNominal() {
-		return Nominal;
-	}
-	public void setNominal(Long nominal) {
-		Nominal = nominal;
-	}
-	public String getTujuan() {
-		return Tujuan;
-	}
-	public void setTujuan(String tujuan) {
-		Tujuan = tujuan;
-	}
-	public Long getNo_Ticket() {
-		return No_Ticket;
-	}
-	public void setNo_Ticket(Long no_Ticket) {
-		No_Ticket = no_Ticket;
-	}
+	 private Long id;
+	    private String id_kendaraan;
+	    private String id_custumer;
+	    private String trasportasi;
+	    private String nominal;
+	    private String tujuan;
+	    private String no_tiket;
+		public Long getId() {
+			return id;
+		}
+		public void setId(Long id) {
+			this.id = id;
+		}
+		public String getId_kendaraan() {
+			return id_kendaraan;
+		}
+		public void setId_kendaraan(String id_kendaraan) {
+			this.id_kendaraan = id_kendaraan;
+		}
+		public String getId_custumer() {
+			return id_custumer;
+		}
+		public void setId_custumer(String id_custumer) {
+			this.id_custumer = id_custumer;
+		}
+		public String getTrasportasi() {
+			return trasportasi;
+		}
+		public void setTrasportasi(String trasportasi) {
+			this.trasportasi = trasportasi;
+		}
+		public String getNominal() {
+			return nominal;
+		}
+		public void setNominal(String nominal) {
+			this.nominal = nominal;
+		}
+		public String getTujuan() {
+			return tujuan;
+		}
+		public void setTujuan(String tujuan) {
+			this.tujuan = tujuan;
+		}
+		public String getNo_tiket() {
+			return no_tiket;
+		}
+		public void setNo_tiket(String no_tiket) {
+			this.no_tiket = no_tiket;
+		}
+	    
 }
