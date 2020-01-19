@@ -24,7 +24,7 @@ public class Ht_TransportasiDao {
 				Ht_Transportasi.setId(rs.getLong("id"));
 				Ht_Transportasi.setNo_tiket(rs.getString("no_tiket"));
 				Ht_Transportasi.setTgl_transaksi(rs.getString("tgl_transaksi"));
-				listTicketing.add(Ticketing);
+				listHt_Transportasi.add(Ht_Transportasi);
 			}
 			
 			if (listHt_Transportasi.size() == 0) {
